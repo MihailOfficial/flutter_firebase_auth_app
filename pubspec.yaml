@@ -17,6 +17,7 @@ environment:
   sdk: ">=2.2.2 <3.0.0"
 
 dependencies:
+  tflite: ^1.1.1
   flutter:
     sdk: flutter
   flame: ^0.25.0
@@ -83,6 +84,8 @@ flutter:
       - assets/images/high.png
       - assets/images/download.jpg
       - assets/images/images.jpg
+      - assets/model.tflite
+      - assets/label.txt
   uses-material-design: true
   # To add assets to your application, add an assets section, like this:
   # assets:

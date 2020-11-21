@@ -16,7 +16,8 @@ import 'package:provider/provider.dart';
 //test
 import './services/auth.dart';
 import 'dart:io';
-
+import 'package:tflite/tflite.dart';
+//https://picsum.photos/200/300 random image link
 void main() async {
 
   WidgetsFlutterBinding.ensureInitialized();
@@ -42,9 +43,18 @@ class MyApp extends StatelessWidget {
   static FirebaseAnalyticsObserver observer =
       FirebaseAnalyticsObserver(analytics: analytics);
 
+  static Future<String> loadModel() async{
+    return Tflite.loadModel(
+      model: "assets/model.tflite",
+      labels: "assets/label.txt",
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     print("drawing Main Page");
+    loadModel();
+
 
     FirebaseAnalytics analytics = FirebaseAnalytics();
 

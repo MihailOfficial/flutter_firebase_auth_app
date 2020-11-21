@@ -5,13 +5,17 @@ import 'package:firebase_auth_app/components/LoadingCircle.dart';
 import 'package:firebase_auth_app/components/MenuDrawer.dart';
 import 'package:firebase_auth_app/screens/Home.dart';
 import 'package:firebase_auth_app/screens/Login.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flame/flame.dart';
 import 'package:flame/util.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:image_cropper/image_cropper.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 //test
 import './services/auth.dart';
+import 'dart:io';
 
 void main() async {
 
@@ -68,7 +72,7 @@ class MyApp extends StatelessWidget {
               if (snapshot.connectionState == ConnectionState.done) {
                 print("drawing main: target screen" +
                     snapshot.connectionState.toString());
-                final bool loggedIn = snapshot.hasData; 
+                final bool loggedIn = snapshot.hasData;
                 return loggedIn ? HomePage() : LoginPage();
               } else {
                 print("drawing main: loading circle" +

@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "508394253728",
+    "firebase_url": "https://vfhack-d6add.firebaseio.com",
+    "project_id": "vfhack-d6add",
+    "storage_bucket": "vfhack-d6add.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:508394253728:android:fb0b8004d2ed9044b108c5",
+        "android_client_info": {
+          "package_name": "com.fiwic.firebase_auth_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "508394253728-01phlft39qhpcghq1kvukeesq9o6rdj6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC8TEHDrWCOtVnUQLJDc8wQT8inXEIFeio"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "508394253728-01phlft39qhpcghq1kvukeesq9o6rdj6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

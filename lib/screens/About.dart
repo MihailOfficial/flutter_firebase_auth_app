@@ -5,7 +5,19 @@ import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:package_info/package_info.dart';
 import 'Dart:io';
+import 'package:flutter/material.dart';
+import 'dart:async';
+import 'dart:io';
+import 'dart:io' as io;
+import 'dart:math';
+import 'dart:ui' as ui;
 
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+
+import 'package:image_picker/image_picker.dart';
+import 'package:image_cropper/image_cropper.dart';
 class AboutPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -29,13 +41,25 @@ class _ImageCaptureState extends State<ImageCapture> {
   Future<void> _cropImage() async {
     File cropped = await ImageCropper.cropImage(
         sourcePath: _imageFile.path,
+
         // ratioX: 1.0,
         // ratioY: 1.0,
         // maxWidth: 512,
         // maxHeight: 512,
-        toolbarColor: Colors.purple,
-        toolbarWidgetColor: Colors.white,
-        toolbarTitle: 'Crop It');
+        androidUiSettings: AndroidUiSettings(
+            toolbarTitle: 'Crop Clothing',
+            toolbarColor: Colors.deepOrange,
+            toolbarWidgetColor: Colors.white,
+            initAspectRatio: CropAspectRatioPreset.original,
+            lockAspectRatio: false,
+
+        ),
+        iosUiSettings: IOSUiSettings(
+          minimumAspectRatio: 3.0,
+          aspectRatioLockEnabled: true,
+
+            aspectRatioLockDimensionSwapEnabled: true,
+        ));
 
     setState(() {
       _imageFile = cropped ?? _imageFile;
@@ -110,11 +134,17 @@ class _ImageCaptureState extends State<ImageCapture> {
               ),
             )
           ]
+          else if (_imageFile == null) ...[
+             Container(
+               child: Text('Insert Instructions here'),
+             )
+          ]
         ],
       ),
     );
   }
 }
+
 
 /// Widget used to handle the management of
 class Uploader extends StatefulWidget {

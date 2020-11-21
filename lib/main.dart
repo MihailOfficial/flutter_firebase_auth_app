@@ -5,7 +5,6 @@ import 'package:firebase_auth_app/components/LoadingCircle.dart';
 import 'package:firebase_auth_app/components/MenuDrawer.dart';
 import 'package:firebase_auth_app/screens/Home.dart';
 import 'package:firebase_auth_app/screens/Login.dart';
-import 'package:firebase_auth_app/screens/game.dart';
 import 'package:flame/flame.dart';
 import 'package:flame/util.dart';
 import 'package:flutter/gestures.dart';
@@ -18,10 +17,6 @@ void main() async {
 
   WidgetsFlutterBinding.ensureInitialized();
   //SharedPreferences storage = await SharedPreferences.getInstance();
-  count[0] = 0;
-  count[1] = 0;
-  count[2] = 0;
-  count[3] = 0;
 
   Util flameUtil = Util();
 
@@ -29,10 +24,7 @@ void main() async {
 
   Flame.util.fullScreen();
 
-  tempWidth = size.height;
-  tempHeight = size.width;
 
-  game = MyGame(size);
   runApp(MyApp());
   TapGestureRecognizer tapper = TapGestureRecognizer();
   flameUtil.addGestureRecognizer(tapper);

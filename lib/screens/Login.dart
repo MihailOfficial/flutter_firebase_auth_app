@@ -108,9 +108,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: _scaffoldKey,
-      appBar: AppBar(
-        title: Text(_pageTitle),
-      ),
+
       body: ModalProgressHUD(
           child: Center(
             child: Form(

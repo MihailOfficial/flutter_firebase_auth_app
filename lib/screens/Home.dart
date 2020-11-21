@@ -24,8 +24,8 @@ class _HomePageState extends State<HomePage> {
   void initState(){
     super.initState();
     SystemChrome.setPreferredOrientations([
-      DeviceOrientation.landscapeRight,
-      DeviceOrientation.landscapeLeft,
+      DeviceOrientation.portraitUp,
+
     ]);
   }
   @override

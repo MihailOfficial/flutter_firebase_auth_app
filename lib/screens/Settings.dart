@@ -1,9 +1,9 @@
 import 'package:firebase_auth_app/components/MenuDrawer.dart';
 import 'package:flutter/material.dart';
 
+import 'Home.dart';
 
-import '../screens/mastergame.dart';
-import 'game.dart';
+
 
 
 
@@ -29,7 +29,7 @@ class MyApp1 extends StatelessWidget {
       home: Builder(
         builder: (BuildContext context) {
           var screenHeight = MediaQuery.of(context).size.height;
-          return Home();
+          return HomePage();
         },
       ),
     );

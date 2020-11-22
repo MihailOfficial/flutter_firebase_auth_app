@@ -27,6 +27,7 @@ import 'package:provider/provider.dart';
 import 'Home.dart';
 
 
+bool isShirt = true;
 List<bool> isSelected = [false, false];
 
 class SettingsPage extends StatefulWidget {
@@ -225,8 +226,15 @@ class _UploaderState extends State<Uploader> {
 
   StorageUploadTask _uploadTask;
 
-  _startUpload() {
-    String filePath = 'images/${DateTime.now()}.png';
+  _startUpload() async {
+    String usrid = (await FirebaseAuth.instance.currentUser()).uid;
+    String filePath;
+    if(isShirt){
+      filePath = usrid + '/shirts/${DateTime.now()}.png';
+    } else {
+      filePath = usrid + '/pants/${DateTime.now()}.png';
+    }
+
 
     setState(() {
       _uploadTask = _storage.ref().child(filePath).putFile(widget.file);

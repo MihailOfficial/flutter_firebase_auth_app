@@ -39,7 +39,7 @@ class AboutPage extends StatelessWidget {
         title: Text("Community"),
 
         actions: <Widget>[LogoutButton()],
-        backgroundColor: Color.fromRGBO(28, 28, 28, 1),
+        backgroundColor: Color.fromRGBO(141, 162, 144, 1),
       ),
       drawer: Drawer(
         child: FutureBuilder<FirebaseUser>(

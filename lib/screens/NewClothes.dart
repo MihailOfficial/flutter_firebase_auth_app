@@ -27,7 +27,7 @@ import 'package:provider/provider.dart';
 import 'Home.dart';
 
 
-
+List<bool> isSelected = [false, false];
 
 class SettingsPage extends StatefulWidget {
   @override
@@ -46,7 +46,7 @@ class _SettingsPageState extends State<SettingsPage> {
         title: Text("Add Clothing"),
 
         actions: <Widget>[LogoutButton()],
-        backgroundColor: Color.fromRGBO(28, 28, 28, 1),
+        backgroundColor: Color.fromRGBO(141, 162, 144, 1),
       ),
       drawer: Drawer(
         child: FutureBuilder<FirebaseUser>(
@@ -147,6 +147,7 @@ class _ImageCaptureState extends State<ImageCapture> {
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: BottomAppBar(
+
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -157,7 +158,7 @@ class _ImageCaptureState extends State<ImageCapture> {
                 size: 30,
               ),
               onPressed: () => _pickImage(ImageSource.camera),
-              color: Colors.blue,
+              color: Colors.black,
             ),
             IconButton(
               icon: Icon(
@@ -165,7 +166,7 @@ class _ImageCaptureState extends State<ImageCapture> {
                 size: 30,
               ),
               onPressed: () => _pickImage(ImageSource.gallery),
-              color: Colors.pink,
+              color: Colors.black,
             ),
           ],
         ),
@@ -179,12 +180,12 @@ class _ImageCaptureState extends State<ImageCapture> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
                 FlatButton(
-                  color: Colors.black,
+                  color: Colors.grey,
                   child: Icon(Icons.crop),
                   onPressed: _cropImage,
                 ),
                 FlatButton(
-                  color: Colors.black,
+                  color: Colors.grey,
                   child: Icon(Icons.refresh),
                   onPressed: _clear,
                 ),
@@ -269,11 +270,27 @@ class _UploaderState extends State<Uploader> {
                 ]);
           });
     } else {
-      return FlatButton.icon(
+      return Column (
+        children: [
+
+          ToggleButtons(
+                children: <Widget>[
+
+              Text(' Male '),
+                  Text(' Female '),
+              ],
+              onPressed: (int index) {
+              setState(() {
+              isSelected[index] = !isSelected[index];
+              });
+              },
+              isSelected: isSelected,
+          ),
+      FlatButton.icon(
           color: Colors.blue,
-          label: Text('Upload to Firebase'),
+          label: Text('Upload to cloud'),
           icon: Icon(Icons.cloud_upload),
-          onPressed: _startUpload);
+          onPressed: _startUpload)]);
     }
   }
 }

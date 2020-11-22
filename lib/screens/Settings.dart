@@ -38,21 +38,7 @@ class _SettingsPageState extends State<SettingsPage> {
   int _selectedIndex = 0;
   static const TextStyle optionStyle =
   TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
-  static const List<Widget> _widgetOptions = <Widget>[
-    Text(
-      'Index 0: Home',
-      style: optionStyle,
-    ),
-    Text(
-      'Index 1: Likes',
-      style: optionStyle,
-    ),
-    Text(
-      'Index 2: Search',
-      style: optionStyle,
-    ),
 
-  ];
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
@@ -61,6 +47,19 @@ class _SettingsPageState extends State<SettingsPage> {
 
         actions: <Widget>[LogoutButton()],
         backgroundColor: Color.fromRGBO(28, 28, 28, 1),
+      ),
+      drawer: Drawer(
+        child: FutureBuilder<FirebaseUser>(
+            future: AuthService().getUser,
+            builder: (context, AsyncSnapshot<FirebaseUser> snapshot) {
+              if (snapshot.connectionState == ConnectionState.done) {
+                Provider.of<MenuStateInfo>(context)
+                    .setCurrentUser(snapshot.data);
+                return MenuDrawer();
+              } else {
+                return CircularProgressIndicator();
+              }
+            }),
       ),
       // body: StreamProvider<List<Item>>.value(
       //   // when this stream changes, the children will get
@@ -83,6 +82,7 @@ class MyApp1 extends StatelessWidget {
 
       debugShowCheckedModeBanner: false,
       title: 'Onboarding Concept',
+
       home: Builder(
         builder: (BuildContext context) {
           var screenHeight = MediaQuery.of(context).size.height;

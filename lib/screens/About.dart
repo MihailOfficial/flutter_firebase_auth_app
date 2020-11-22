@@ -37,10 +37,23 @@ class AboutPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text("Community"),
+
         actions: <Widget>[LogoutButton()],
         backgroundColor: Color.fromRGBO(28, 28, 28, 1),
       ),
-
+      drawer: Drawer(
+        child: FutureBuilder<FirebaseUser>(
+            future: AuthService().getUser,
+            builder: (context, AsyncSnapshot<FirebaseUser> snapshot) {
+              if (snapshot.connectionState == ConnectionState.done) {
+                Provider.of<MenuStateInfo>(context)
+                    .setCurrentUser(snapshot.data);
+                return MenuDrawer();
+              } else {
+                return CircularProgressIndicator();
+              }
+            }),
+      ),
       body: TinderTab(),
     );
   }
@@ -115,11 +128,11 @@ class _TinderTabState extends State<TinderTab>
                   height: ScreenUtil().setHeight(30.0),
                 ),
                 new Text(
-                  "Searching nearby matchings ...",
+                  "Searching...",
                   style: new TextStyle(
                       fontSize: ScreenUtil().setSp(60.0),
                       fontWeight: FontWeight.w200,
-                      color: Colors.grey.shade600),
+                      color: Colors.white),
                 )
               ],
             )
@@ -129,28 +142,20 @@ class _TinderTabState extends State<TinderTab>
                 new SizedBox(
                   height: ScreenUtil().setHeight(550.0),
                 ),
-                new ClipRRect(
-                  borderRadius: BorderRadius.circular(100.0),
-                  child: new Image(
-                      width: ScreenUtil().setWidth(400),
-                      height: ScreenUtil().setWidth(400),
-                      fit: BoxFit.cover,
-                      image:
-                      new AssetImage('assets/images/abhishekProfile.JPG')),
-                ),
+
                 new SizedBox(
                   height: ScreenUtil().setHeight(40.0),
                 ),
                 new Padding(
                   padding: EdgeInsets.symmetric(
                       horizontal: ScreenUtil().setWidth(60.0)),
-                  child: new Text("There is no one new around you ...",
+                  child: new Text("App's database is too small!",
                       textAlign: TextAlign.center,
                       style: new TextStyle(
                           wordSpacing: 1.2,
                           fontSize: ScreenUtil().setSp(55.0),
                           fontWeight: FontWeight.w300,
-                          color: Colors.grey.shade600)),
+                          color: Colors.white)),
                 ),
 
               ],

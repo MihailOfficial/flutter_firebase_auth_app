@@ -76,20 +76,31 @@ class _HomePageState extends State<HomePage> {
       //   child: ItemsList(),
       // ),
         backgroundColor: Colors.grey.shade600,
+        appBar: AppBar(
+          title: Text("My Fashion"),
+
+          actions: <Widget>[LogoutButton()],
+          backgroundColor: Color.fromRGBO(28, 28, 28, 1),
+        ),
+        drawer: Drawer(
+          child: FutureBuilder<FirebaseUser>(
+              future: AuthService().getUser,
+              builder: (context, AsyncSnapshot<FirebaseUser> snapshot) {
+                if (snapshot.connectionState == ConnectionState.done) {
+                  Provider.of<MenuStateInfo>(context)
+                      .setCurrentUser(snapshot.data);
+                  return MenuDrawer();
+                } else {
+                  return CircularProgressIndicator();
+                }
+              }),
+        ),
       body: Column(
           children: <Widget>[
 
-      OutlineButton(
-        textColor: Color(0xFF6200EE),
-        highlightedBorderColor: Colors.black.withOpacity(0.12),
-        onPressed: () {
-          // Respond to button press
-        },
-        child: Text("OUTLINED BUTTON"),
-      ),
 
       Padding(
-          padding: const EdgeInsets.fromLTRB(20, 0, 20, 10),
+          padding: const EdgeInsets.fromLTRB(20, 20, 20, 10),
           child:  Container(
             decoration: BoxDecoration(
               boxShadow: [
@@ -137,48 +148,21 @@ class _HomePageState extends State<HomePage> {
                   padding: const EdgeInsets.all(20.0),),
               ],
             ),
-          ))]),
+          )),
+            RaisedButton.icon(
+              textColor: Colors.white,
+              color: Color.fromRGBO(153, 154, 207, 1),
+              onPressed: () {
+                // Respond to button press
+              },
+              icon: Icon(Icons.refresh, size: 20),
+              label: Text("REGENERATE"),
+            )
+
+          ]));
 
 
 
-      bottomNavigationBar: Container(
-        decoration: BoxDecoration(color: Colors.white, boxShadow: [
-          BoxShadow(blurRadius: 20, color: Colors.black.withOpacity(.1))
-        ]),
-        child: SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 8),
-            child: GNav(
-                gap: 8,
-                activeColor: Colors.white,
-                iconSize: 24,
-                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-                duration: Duration(milliseconds: 800),
-                tabBackgroundColor: Colors.grey[800],
-                tabs: [
-                  GButton(
-                    icon: LineIcons.male,
-                    text: 'Dress',
-                  ),
-                  GButton(
-                    icon: LineIcons.thumbs_o_up,
-                    text: 'Rate',
-                  ),
-                  GButton(
-                    icon: LineIcons.plus,
-                    text: 'New',
-                  ),
-
-                ],
-                selectedIndex: _selectedIndex,
-                onTabChange: (index) {
-                  setState(() {
-                    _selectedIndex = index;
-                  });
-                }),
-          ),
-        ),
-      ));
 
 
 

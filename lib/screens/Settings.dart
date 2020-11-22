@@ -3,8 +3,10 @@ import 'package:firebase_auth_app/components/MenuDrawer.dart';
 import 'package:firebase_auth_app/services/auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:line_icons/line_icons.dart';
 import 'package:package_info/package_info.dart';
 import 'Dart:io';
 import 'package:flutter/material.dart';
@@ -33,6 +35,24 @@ class SettingsPage extends StatefulWidget {
 }
 
 class _SettingsPageState extends State<SettingsPage> {
+  int _selectedIndex = 0;
+  static const TextStyle optionStyle =
+  TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
+  static const List<Widget> _widgetOptions = <Widget>[
+    Text(
+      'Index 0: Home',
+      style: optionStyle,
+    ),
+    Text(
+      'Index 1: Likes',
+      style: optionStyle,
+    ),
+    Text(
+      'Index 2: Search',
+      style: optionStyle,
+    ),
+
+  ];
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
@@ -49,21 +69,11 @@ class _SettingsPageState extends State<SettingsPage> {
       //   child: ItemsList(),
       // ),
       //body: ,
-      drawer: Drawer(
-        child: FutureBuilder<FirebaseUser>(
-            future: AuthService().getUser,
-            builder: (context, AsyncSnapshot<FirebaseUser> snapshot) {
-              if (snapshot.connectionState == ConnectionState.done) {
-                Provider.of<MenuStateInfo>(context)
-                    .setCurrentUser(snapshot.data);
-                return MenuDrawer();
-              } else {
-                return CircularProgressIndicator();
-              }
-            }),
-      ),
+
       body:  MyApp1(),
+
     );
+
   }
 }
 class MyApp1 extends StatelessWidget {

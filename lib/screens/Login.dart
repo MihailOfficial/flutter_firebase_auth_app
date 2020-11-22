@@ -141,6 +141,7 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   List<Widget> buildInputs(FormType formType) {
+
     var base = <Widget>[
       Padding(
         padding: const EdgeInsets.fromLTRB(10, 100, 10, 0),),
@@ -190,6 +191,7 @@ class _LoginPageState extends State<LoginPage> {
 
       child:
       TextFormField(
+        obscureText: true,
         onSaved: (value) => _password = value,
         decoration: InputDecoration(
             prefixIcon: Icon(

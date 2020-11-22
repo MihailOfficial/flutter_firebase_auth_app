@@ -38,19 +38,7 @@ class AboutPage extends StatelessWidget {
         actions: <Widget>[LogoutButton()],
         backgroundColor: Color.fromRGBO(28, 28, 28, 1),
       ),
-      drawer: Drawer(
-        child: FutureBuilder<FirebaseUser>(
-            future: AuthService().getUser,
-            builder: (context, AsyncSnapshot<FirebaseUser> snapshot) {
-              if (snapshot.connectionState == ConnectionState.done) {
-                Provider.of<MenuStateInfo>(context)
-                    .setCurrentUser(snapshot.data);
-                return MenuDrawer();
-              } else {
-                return CircularProgressIndicator();
-              }
-            }),
-      ),
+
       body: TinderTab(),
     );
   }

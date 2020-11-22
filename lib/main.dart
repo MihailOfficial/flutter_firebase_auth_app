@@ -3,8 +3,10 @@ import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_analytics/observer.dart';
 import 'package:firebase_auth_app/components/LoadingCircle.dart';
 import 'package:firebase_auth_app/components/MenuDrawer.dart';
+import 'package:firebase_auth_app/screens/About.dart';
 import 'package:firebase_auth_app/screens/Home.dart';
 import 'package:firebase_auth_app/screens/Login.dart';
+import 'package:firebase_auth_app/screens/Settings.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flame/flame.dart';
 import 'package:flame/util.dart';
@@ -55,9 +57,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         Provider<FirebaseAnalytics>.value(value: analytics),
-        Provider<MenuStateInfo>.value(
-          value: MenuStateInfo("HomePage"),
-        )
+
       ],
       child: MaterialApp(
         title: 'Flutter Demo',
@@ -67,7 +67,14 @@ class MyApp extends StatelessWidget {
         navigatorObservers: [
           FirebaseAnalyticsObserver(analytics: analytics),
         ],
-        initialRoute: "/",
+
+        routes: {
+          // When navigating to the "/" route, build the FirstScreen widget.
+
+          // When navigating to the "/second" route, build the SecondScreen widget.
+          '/second': (context) => HomePage(),
+          '/third': (context) => SettingsPage(),
+        },
         home: FutureBuilder<FirebaseUser>(
           future: AuthService().getUser,
         builder: (context, AsyncSnapshot<FirebaseUser> snapshot) {
@@ -75,7 +82,7 @@ class MyApp extends StatelessWidget {
             print("drawing main: target screen" +
                 snapshot.connectionState.toString());
             final bool loggedIn = snapshot.hasData;
-            return loggedIn ? HomePage() : LoginPage();
+            return loggedIn ? HomePage() : HomePage();
           } else {
             print("drawing main: loading circle" +
                 snapshot.connectionState.toString());

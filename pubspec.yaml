@@ -26,7 +26,10 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.2
+  flutter_screenutil: ^1.1.0
+  font_awesome_flutter: ^8.7.0
   firebase_core: 0.4.0+1
+  carousel_slider: ^1.4.1
   firebase_auth: 0.11.1
   cloud_firestore: 0.11.0+2
   firebase_analytics: 3.0.1
@@ -37,6 +40,8 @@ dependencies:
   firebase_storage: 3.0.4
   image_cropper: ^1.3.1
   image_picker: 0.6.0+17
+  bubble: ^1.1.9+1
+  flutter_tindercard: ^0.1.8
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -64,25 +69,7 @@ flutter:
   # the material Icons class.
 
   assets:
-      - assets/images/heart.png
-      - assets/images/Stars Small_1.png
-      - assets/images/Stars Small_2.png
-      - assets/images/Stars-Big_1_1_PC.png
-      - assets/images/Stars-Big_1_2_PC.png
-      - assets/images/Nebula Blue.png
-      - assets/images/circle.png
-      - assets/images/test.jpg
-      - assets/images/light-1.png
-      - assets/images/background.png
-      - assets/images/light-2.png
-      - assets/images/clock.png
-      - assets/images/test11.jpg
-      - assets/images/sample1.png
-      - assets/images/temp1.jpg
-      - assets/images/temp2.jpg
-      - assets/images/high.png
-      - assets/images/download.jpg
-      - assets/images/images.jpg
+    - assets/images/
   uses-material-design: true
   # To add assets to your application, add an assets section, like this:
   # assets:

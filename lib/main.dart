@@ -16,22 +16,24 @@ import 'package:provider/provider.dart';
 //test
 import './services/auth.dart';
 import 'dart:io';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_tindercard/flutter_tindercard.dart';
+import 'package:firebase_auth_app/model/PeopleList.dart';
+
 
 void main() async {
 
   WidgetsFlutterBinding.ensureInitialized();
   //SharedPreferences storage = await SharedPreferences.getInstance();
 
-  Util flameUtil = Util();
 
-  final size = await Flame.util.initialDimensions();
 
   Flame.util.fullScreen();
 
 
   runApp(MyApp());
   TapGestureRecognizer tapper = TapGestureRecognizer();
-  flameUtil.addGestureRecognizer(tapper);
+
 
 }
 
@@ -67,20 +69,22 @@ class MyApp extends StatelessWidget {
         ],
         initialRoute: "/",
         home: FutureBuilder<FirebaseUser>(
-            future: AuthService().getUser,
-            builder: (context, AsyncSnapshot<FirebaseUser> snapshot) {
-              if (snapshot.connectionState == ConnectionState.done) {
-                print("drawing main: target screen" +
-                    snapshot.connectionState.toString());
-                final bool loggedIn = snapshot.hasData;
-                return loggedIn ? HomePage() : LoginPage();
-              } else {
-                print("drawing main: loading circle" +
-                    snapshot.connectionState.toString());
-                return LoadingCircle();
-              }
-            }),
+          future: AuthService().getUser,
+        builder: (context, AsyncSnapshot<FirebaseUser> snapshot) {
+          if (snapshot.connectionState == ConnectionState.done) {
+            print("drawing main: target screen" +
+                snapshot.connectionState.toString());
+            final bool loggedIn = snapshot.hasData;
+            return loggedIn ? HomePage() : LoginPage();
+          } else {
+            print("drawing main: loading circle" +
+                snapshot.connectionState.toString());
+            return LoadingCircle();
+          }
+        }),
       ),
     );
   }
 }
+
+

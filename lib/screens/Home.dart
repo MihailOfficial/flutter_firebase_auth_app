@@ -66,7 +66,7 @@ class _HomePageState extends State<HomePage> {
           title: Text("My Fashion"),
 
           actions: <Widget>[LogoutButton()],
-          backgroundColor: Color.fromRGBO(28, 28, 28, 1),
+          backgroundColor: Color.fromRGBO(141, 162, 144, 1),
         ),
         drawer: Drawer(
           child: FutureBuilder<FirebaseUser>(
@@ -137,7 +137,7 @@ class _HomePageState extends State<HomePage> {
           )),
             RaisedButton.icon(
               textColor: Colors.white,
-              color: Color.fromRGBO(153, 154, 207, 1),
+              color: Color.fromRGBO(141, 162, 144, 1),
               onPressed: () {
                 // Respond to button press
               },

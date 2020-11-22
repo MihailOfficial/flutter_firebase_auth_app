@@ -86,7 +86,7 @@ class _MenuDrawerState extends State<MenuDrawer> {
           DrawerHeader(
             child:  Text(user != null ? user.email : "Missing Email"),
             decoration: BoxDecoration(
-              color:  Color.fromRGBO(252,238,10, 1),
+              color:  Color.fromRGBO(242, 221, 192, 1),
             ),
           ),
           ...getMenuItems(context),
@@ -118,7 +118,7 @@ class _MenuDrawerState extends State<MenuDrawer> {
     var _boxDecoration = isSelected
         ? BoxDecoration(
       borderRadius: BorderRadius.circular(8.0),
-      color: Color.fromRGBO(252,238,10, 1),
+      color: Color.fromRGBO(242, 221, 192, 1),
     )
         : BoxDecoration();
 

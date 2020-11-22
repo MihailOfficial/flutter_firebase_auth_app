@@ -70,29 +70,37 @@ class TinderTab extends StatefulWidget {
   _TinderTabState createState() => _TinderTabState();
 }
 
-Future<List<Image>> work() async {
-  double score = 0;
-  var rngShirtUrl;
-  var rngPantUrl;
-  while(score < 0.8){
-    rngPantUrl = generatePant();
-    rngShirtUrl = generateShirt();
+class _TinderTabState extends State<TinderTab>
+    with SingleTickerProviderStateMixin {
+  void work() async {
+    double score = 0;
+    var rngShirtUrl;
+    var rngPantUrl;
+    while(score < 0.8){
+      rngPantUrl = generatePant();
+      rngShirtUrl = generateShirt();
 //    Tflite.runModelOnBinary(
 //        binary: await,
 //        numResults: 5)
 //        .then((value) {  if (value.isNotEmpty) {
 //    }});
-    var newScore = 1.0; //extract from value
-    score = newScore;
+      var newScore = 1.0; //extract from value
+      score = newScore;
+    }
+    List<Image> result = [];
+    result.add(new Image.network(rngShirtUrl));
+    result.add(new Image.network(rngPantUrl));
+    print(result.length);
+    results.add(result);
   }
-  List<Image> result;
-  result.add(Image.network(rngShirtUrl));
-  result.add(Image.network(rngPantUrl));
-  return result;
-}
 
-class _TinderTabState extends State<TinderTab>
-    with SingleTickerProviderStateMixin {
+  List results = [];
+  @override
+  void initState(){
+    for(var i in peoples){
+      work();
+    }
+  }
   bool chng = true;
   bool atCenter = true;
   bool _triggerNotFound = false;
@@ -175,9 +183,7 @@ class _TinderTabState extends State<TinderTab>
               minWidth: MediaQuery.of(context).size.width - 50.0,
               minHeight: MediaQuery.of(context).size.height * 0.80,
               cardBuilder: (context, index) {
-                List<Image> result;
-                work().then((list) => {result = list});
-                return MatchCard(result[0],result[1]);
+                return MatchCard(results[index][0], results[index][1]);
               },
               cardController: _cardController,
               swipeUpdateCallback:

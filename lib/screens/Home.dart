@@ -1,13 +1,27 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_auth_app/components/ItemsList.dart';
 import 'package:firebase_auth_app/components/MenuDrawer.dart';
-
-import 'package:firebase_auth_app/screens/AddItem.dart';
 import 'package:firebase_auth_app/services/auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter/material.dart';
+import 'package:image_cropper/image_cropper.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:package_info/package_info.dart';
+import 'Dart:io';
+import 'package:flutter/material.dart';
+import 'dart:async';
+import 'dart:io';
+import 'dart:io' as io;
+import 'dart:math';
+import 'dart:ui' as ui;
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:provider/provider.dart';
 
+import 'package:image_picker/image_picker.dart';
+import 'package:image_cropper/image_cropper.dart';
+import 'package:provider/provider.dart';
 import 'Login.dart';
 
 class HomePage extends StatefulWidget {
@@ -39,6 +53,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Welcome screen"),
+
         actions: <Widget>[LogoutButton()],
         backgroundColor: Color.fromRGBO(28, 28, 28, 1),
       ),
@@ -48,7 +63,7 @@ class _HomePageState extends State<HomePage> {
       //   stream: DataService().getItemsSnapshot(),
       //   child: ItemsList(),
       // ),
-      body: ItemsList(),
+      //body: ,
       drawer: Drawer(
         child: FutureBuilder<FirebaseUser>(
             future: AuthService().getUser,

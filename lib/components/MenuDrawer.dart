@@ -31,21 +31,21 @@ class _MenuDrawerState extends State<MenuDrawer> {
   final Map<String, dynamic> menus = {
     'Home': {
       'name': "HomePage",
-      'labelText': "Home",
+      'labelText': "My Fashion",
       'component': HomePage(),
-      'icon': new Icon(Icons.home)
+      'icon': new Icon(Icons.supervised_user_circle)
     },
     'Settings': {
       'name': "SettingsPage",
-      'labelText': "Game",
+      'labelText': "Add Clothing",
       'component': SettingsPage(),
-      'icon': new Icon(Icons.videogame_asset)
+      'icon': new Icon(Icons.open_in_browser)
     },
     "About": {
       'name': "AboutPage",
-      'labelText': "About This App",
+      'labelText': "Community",
       'component': AboutPage(),
-      'icon': new Icon(Icons.info)
+      'icon': new Icon(Icons.aspect_ratio)
     }
   };
 

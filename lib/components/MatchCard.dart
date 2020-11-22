@@ -19,57 +19,55 @@ class MatchCard extends StatefulWidget {
 class _MatchCardState extends State<MatchCard> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: new BoxDecoration(
+    return  Padding(
+        padding: const EdgeInsets.fromLTRB(20, 0, 20, 10),
+    child:  Container(
+      decoration: BoxDecoration(
         boxShadow: [
-          new BoxShadow(
-              color: Colors.grey.shade700,
-              offset: new Offset(0.0, 5.0),
-              blurRadius: 20.0)
+          BoxShadow(
+            color: Colors.white,)
+
         ],
-        borderRadius: new BorderRadius.circular(100.0),
+        borderRadius: new BorderRadius.circular(20.0),
       ),
-      child: new Column(
+      child:
+
+      new Column(
         children: <Widget>[
-          new Container(
-            decoration: new BoxDecoration(
-              boxShadow: [
-                new BoxShadow(
-                    color: Colors.grey.shade700,
-                    offset: new Offset(0.0, 5.0),
-                    blurRadius: 15.0)
-              ],
-              borderRadius: new BorderRadius.circular(100.0),
-            ),
-            height: MediaQuery.of(context).size.height * 0.34,
-            width: MediaQuery.of(context).size.width - 10.0,
-            child: new ClipRRect(
-              borderRadius: new BorderRadius.circular(10.0),
-              child: new Image(
-                  fit: BoxFit.cover, image: new AssetImage(widget.imageURLOne)),
-            ),
-          ),
-          Container(
-            decoration: new BoxDecoration(
-              boxShadow: [
-                new BoxShadow(
-                    color: Colors.grey.shade700,
-                    offset: new Offset(0.0, 5.0),
-                    blurRadius: 15.0)
-              ],
-              borderRadius: new BorderRadius.circular(100.0),
-            ),
-            height: MediaQuery.of(context).size.height * 0.34,
-            width: MediaQuery.of(context).size.width - 10.0,
-            child: new ClipRRect(
-              borderRadius: new BorderRadius.circular(10.0),
-              child: new Image(
-                  fit: BoxFit.cover, image: new AssetImage(widget.imageURLTwo)),
+
+            Padding(
+            padding: const EdgeInsets.fromLTRB(16, 16, 16, 8),
+            child:  Container(
+
+
+              height: MediaQuery.of(context).size.height * 0.34,
+              width: MediaQuery.of(context).size.width - 10.0,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(10.0),
+                child: Image(
+                    fit: BoxFit.cover, image: AssetImage(widget.imageURLOne)),
+              ),
             ),
           ),
 
+          Padding(
+            padding: const EdgeInsets.fromLTRB(16, 8, 16, 16),
+
+            child:  Container(
+
+              height: MediaQuery.of(context).size.height * 0.34,
+              width: MediaQuery.of(context).size.width - 10.0,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(10.0),
+                child: Image(
+                    fit: BoxFit.cover, image: AssetImage(widget.imageURLTwo)),
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(20.0),),
         ],
       ),
-    );
+    ));
   }
 }

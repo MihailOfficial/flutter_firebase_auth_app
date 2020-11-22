@@ -1,5 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_auth_app/components/MenuDrawer.dart';
 import 'package:firebase_auth_app/model/PeopleList.dart';
+import 'package:firebase_auth_app/services/auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/screenutil.dart';
@@ -7,6 +9,7 @@ import 'package:flutter_tindercard/flutter_tindercard.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:package_info/package_info.dart';
+import 'package:provider/provider.dart';
 import '../main.dart';
 import 'Dart:io';
 import 'package:flutter/material.dart';
@@ -29,9 +32,26 @@ class AboutPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ScreenUtil.init(context) ;
-    return MaterialApp(
-
-      home: TinderTab(),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Community"),
+        actions: <Widget>[LogoutButton()],
+        backgroundColor: Color.fromRGBO(28, 28, 28, 1),
+      ),
+      drawer: Drawer(
+        child: FutureBuilder<FirebaseUser>(
+            future: AuthService().getUser,
+            builder: (context, AsyncSnapshot<FirebaseUser> snapshot) {
+              if (snapshot.connectionState == ConnectionState.done) {
+                Provider.of<MenuStateInfo>(context)
+                    .setCurrentUser(snapshot.data);
+                return MenuDrawer();
+              } else {
+                return CircularProgressIndicator();
+              }
+            }),
+      ),
+      body: TinderTab(),
     );
   }
 }
@@ -55,8 +75,8 @@ class _TinderTabState extends State<TinderTab>
           duration: new Duration(milliseconds: 600),
           curve: Curves.fastLinearToSlowEaseIn,
           color: !atCenter
-              ? chng ? Colors.pinkAccent.shade200 : Colors.tealAccent.shade200
-              : Colors.blue.shade50,
+              ? chng ? Colors.redAccent : Colors.greenAccent
+              : Colors.blueGrey,
           child: new Center(
             child: _triggerNotFound
                 ? !_timeout
@@ -104,7 +124,8 @@ class _TinderTabState extends State<TinderTab>
                           fontSize: ScreenUtil().setSp(55.0),
                           fontWeight: FontWeight.w300,
                           color: Colors.grey.shade600)),
-                )
+                ),
+
               ],
             )
                 : Container(),
@@ -119,9 +140,9 @@ class _TinderTabState extends State<TinderTab>
               stackNum: 3,
               swipeEdge: 10.0,
               maxWidth: MediaQuery.of(context).size.width - 10.0,
-              maxHeight: MediaQuery.of(context).size.height * 0.74,
+              maxHeight: MediaQuery.of(context).size.height * 0.81,
               minWidth: MediaQuery.of(context).size.width - 50.0,
-              minHeight: MediaQuery.of(context).size.height * 0.73,
+              minHeight: MediaQuery.of(context).size.height * 0.80,
               cardBuilder: (context, index) {
                 return peoples[index];
               },
@@ -160,8 +181,7 @@ class _TinderTabState extends State<TinderTab>
                 });
               },
             )),
-      ],
-    );
+       ]);
   }
 
   double abs(double x) {

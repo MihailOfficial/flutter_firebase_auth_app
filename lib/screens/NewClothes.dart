@@ -287,15 +287,21 @@ class _UploaderState extends State<Uploader> {
               Text(' Male '),
                   Text(' Female '),
               ],
-              onPressed: (int index) {
+            onPressed: (int index) {
               setState(() {
-              isSelected[index] = !isSelected[index];
+                for (int indexBtn = 0;indexBtn < isSelected.length;indexBtn++) {
+                  if (indexBtn == index) {
+                    isSelected[indexBtn] = true;
+                  } else {
+                    isSelected[indexBtn] = false;
+                  }
+                }
               });
-              },
+            },
               isSelected: isSelected,
           ),
       FlatButton.icon(
-          color: Colors.blue,
+          color: Colors.lightBlueAccent,
           label: Text('Upload to cloud'),
           icon: Icon(Icons.cloud_upload),
           onPressed: _startUpload)]);

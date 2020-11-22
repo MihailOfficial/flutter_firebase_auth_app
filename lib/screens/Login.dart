@@ -1,6 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_auth_app/components/MessageSnack.dart';
 import 'package:firebase_auth_app/services/auth.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
@@ -108,8 +110,15 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: _scaffoldKey,
-
-      body: ModalProgressHUD(
+        resizeToAvoidBottomPadding: false,
+      body: Container (
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("assets/images/vogue.jpg"),
+            fit: BoxFit.cover
+          )
+        ),
+      child:ModalProgressHUD(
           child: Center(
             child: Form(
               key: formKey,
@@ -128,31 +137,83 @@ class _LoginPageState extends State<LoginPage> {
             ),
           ),
           inAsyncCall: _loading),
-    );
+    ));
   }
 
   List<Widget> buildInputs(FormType formType) {
     var base = <Widget>[
-      TextFormField(
-        decoration: InputDecoration(labelText: 'Email'),
+      Padding(
+        padding: const EdgeInsets.fromLTRB(10, 100, 10, 0),),
+    ClipRRect(
+    borderRadius: BorderRadius.circular(10.0),
+    child: Container (
+    color: Color.fromRGBO(237, 230, 223, 1),
+    child: Padding(
+    padding: const EdgeInsets.fromLTRB(20, 20, 20, 10),
+      child: Column(
+    children: <Widget>[
+      Text(
+        'MEMBERS PLEASE SIGN IN',
+        textAlign: TextAlign.center,
+        overflow: TextOverflow.ellipsis,
+        style: TextStyle(fontWeight: FontWeight.bold),
+      ),
+        Padding(
+            padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),),
+      Container(
+    child: Padding(
+    padding: const EdgeInsets.fromLTRB(10, 0, 10, 10),
+
+    child: TextFormField(
         onSaved: (value) => _email = value,
-      ),
+        decoration: InputDecoration(
+            prefixIcon: Icon(
+              Icons.person,
+              color: Colors.black,
+            ),
+            border: OutlineInputBorder(
+              // width: 0.0 produces a thin "hairline" border
+              borderRadius: BorderRadius.all(Radius.circular(10.0)),
+              borderSide: BorderSide.none,
+              //borderSide: const BorderSide(),
+            ),
+
+            hintStyle: TextStyle(color: Colors.black,fontFamily: "WorkSansLight"),
+            filled: true,
+            fillColor: Colors.white,
+
+            hintText: 'Email'),
+      ))),
+      Container(
+          child: Padding(
+          padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
+
+      child:
       TextFormField(
-        //validator: PasswordValidator.validate,
-        decoration: InputDecoration(labelText: 'Password'),
-        obscureText: true,
         onSaved: (value) => _password = value,
-      ),
-    ];
+        decoration: InputDecoration(
+            prefixIcon: Icon(
+              Icons.lock_outline,
+              color: Colors.black,
+            ),
+            border: OutlineInputBorder(
+
+              borderRadius: BorderRadius.all(Radius.circular(10.0)),
+              borderSide: BorderSide.none,
+              //borderSide: const BorderSide(),
+            ),
+
+            hintStyle: TextStyle(color: Colors.black,fontFamily: "WorkSansLight"),
+            filled: true,
+            fillColor: Colors.white,
+
+            hintText: 'Password'),
+      ))),
+
+    ]))))];
 
     if (formType == FormType.REGISTER) {
-      return base +
-          <Widget>[
-            TextFormField(
-              decoration: InputDecoration(labelText: 'Global Username'),
-              onSaved: (value) => _username = value,
-            )
-          ];
+      return base;
     } else {
       return base;
     }
@@ -161,36 +222,92 @@ class _LoginPageState extends State<LoginPage> {
   List<Widget> buildButtons(BuildContext context) {
     if (_formType == FormType.LOGIN) {
       return [
-        RaisedButton(
+        Padding(
+          padding: const EdgeInsets.fromLTRB(10, 0, 10, 10),),
+        ClipRRect(
+            borderRadius: BorderRadius.circular(10.0),
+        child: Container (
+          color: Color.fromRGBO(252, 226, 194, 1),
+          child: Padding(
+              padding: const EdgeInsets.fromLTRB(20, 20, 20, 10),
+              child: Column(
+              children: <Widget>[
+        ButtonTheme(
+          padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 0), //adds padding inside the button
+           //limits the touch area to the button area
+          minWidth: 0, //wraps child's width
+          height: 0, //wraps child's height
+          child:RaisedButton(
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+          color: Color.fromRGBO(255, 255, 255, 1),
           key: new Key('login'),
-          child: Align(alignment: Alignment.center, child: Text('Login')),
+          child: Align(alignment: Alignment.center, child: Text('LOG IN')),
           onPressed: () => submit(context),
-        ),
-        RaisedButton(
+        ),),
+    Padding(
+    padding: const EdgeInsets.fromLTRB(30, 0, 30, 10)),
+        ButtonTheme(
+          padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 8.0), //adds padding inside the button
+          //limits the touch area to the button area
+          minWidth: 0, //wraps child's width
+          height: 0, //wraps child's height
+          child: RaisedButton(
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
           key: new Key('goto-register'),
+          color: Color.fromRGBO(205, 205, 205, 1),
           child: Align(
-              alignment: Alignment.center, child: Text('Register Account')),
+              alignment: Alignment.center, child: Text('REGISTER')),
           onPressed: () {
             switchFormState('register');
           },
-        ),
-      ];
+        ),),
+      ]))))];
     } else {
       return [
-        RaisedButton(
-          key: new Key('create-account'),
-          child:
-          Align(alignment: Alignment.center, child: Text('Create Account')),
-          onPressed: () => submit(context),
-        ),
-        RaisedButton(
-          key: new Key('go-back'),
-          child: Align(alignment: Alignment.center, child: Text('Back')),
-          onPressed: () {
-            switchFormState('login');
-          },
-        )
-      ];
+        Padding(
+          padding: const EdgeInsets.fromLTRB(10, 0, 10, 10),),
+        ClipRRect(
+            borderRadius: BorderRadius.circular(10.0),
+            child: Container (
+                color: Color.fromRGBO(211, 238, 255, 1),
+                child: Padding(
+                    padding: const EdgeInsets.fromLTRB(20, 20, 20, 10),
+                    child: Column(
+                        children: <Widget>[
+                          ButtonTheme(
+                            padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 0), //adds padding inside the button
+                            //limits the touch area to the button area
+                            minWidth: 0, //wraps child's width
+                            height: 0, //wraps child's height
+                            child:RaisedButton(
+                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                              color: Color.fromRGBO(255, 255, 255, 1),
+
+                              key: new Key('create-account'),
+                              child:
+                              Align(alignment: Alignment.center, child: Text('Create Account')),
+                              onPressed: () => submit(context),
+                            ),),
+                          Padding(
+                              padding: const EdgeInsets.fromLTRB(30, 0, 30, 10)),
+
+                          ButtonTheme(
+                            padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 8.0), //adds padding inside the button
+                            //limits the touch area to the button area
+                            minWidth: 0, //wraps child's width
+                            height: 0, //wraps child's height
+
+                            child: RaisedButton(
+                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                                color: Color.fromRGBO(205, 205, 205, 1),
+                            key: new Key('go-back'),
+                            child: Align(alignment: Alignment.center, child: Text('Back')),
+                            onPressed: () {
+                              switchFormState('login');
+                            })),
+                        ]))))];
+
     }
   }
 }
+

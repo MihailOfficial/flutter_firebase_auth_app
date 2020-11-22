@@ -52,7 +52,7 @@ class _HomePageState extends State<HomePage> {
     print("drawing Home Page");
     return Scaffold(
       appBar: AppBar(
-        title: Text("Welcome screen"),
+        title: Text("My Wardrobe"),
 
         actions: <Widget>[LogoutButton()],
         backgroundColor: Color.fromRGBO(28, 28, 28, 1),

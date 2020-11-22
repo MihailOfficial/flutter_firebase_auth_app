@@ -21,7 +21,6 @@ import 'dart:io';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_tindercard/flutter_tindercard.dart';
 import 'package:firebase_auth_app/model/PeopleList.dart';
-import 'package:tflite/tflite.dart';
 
 
 void main() async {
@@ -37,17 +36,11 @@ void main() async {
   runApp(MyApp());
   TapGestureRecognizer tapper = TapGestureRecognizer();
 
+
 }
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
-
-  static Future<String> loadModel() async{
-    return Tflite.loadModel(
-      model: "assets/model.tflite",
-      labels: "assets/label.txt",
-    );
-  }
 
   static FirebaseAnalytics analytics = FirebaseAnalytics();
   static FirebaseAnalyticsObserver observer =
@@ -56,7 +49,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     print("drawing Main Page");
-    loadModel();
+
     FirebaseAnalytics analytics = FirebaseAnalytics();
 
     analytics.setCurrentScreen(screenName: "Main Screen").then((v) => {});

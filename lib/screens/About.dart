@@ -29,7 +29,7 @@ import 'package:image_cropper/image_cropper.dart';
 
 import 'Home.dart';
 import 'Settings.dart';
-import 'package:tflite/tflite.dart';
+//import 'package:tflite/tflite.dart';
 class AboutPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

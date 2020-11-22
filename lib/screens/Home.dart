@@ -68,28 +68,18 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     print("drawing Home Page");
     return Scaffold(
-      appBar: AppBar(
-        title: Text("My Wardrobe"),
-        flexibleSpace: Container(
-        decoration: BoxDecoration(
-        gradient: LinearGradient(
-        begin: Alignment.topLeft,
-        end: Alignment.bottomRight,
-        colors: <Color>[
-        Color.fromRGBO(160, 156, 243, 1),
-          Color.fromRGBO(243, 190, 188, 1),
-        ]))),
-
-    actions: <Widget>[LogoutButton()],
-        backgroundColor: Color.fromRGBO(28, 28, 28, 1),
-      ),
+      //actions: <Widget>[LogoutButton()],
       // body: StreamProvider<List<Item>>.value(
       //   // when this stream changes, the children will get
       //   // updated appropriately
       //   stream: DataService().getItemsSnapshot(),
       //   child: ItemsList(),
       // ),
-      body:  OutlineButton(
+        backgroundColor: Colors.grey.shade600,
+      body: Column(
+          children: <Widget>[
+
+      OutlineButton(
         textColor: Color(0xFF6200EE),
         highlightedBorderColor: Colors.black.withOpacity(0.12),
         onPressed: () {
@@ -97,6 +87,60 @@ class _HomePageState extends State<HomePage> {
         },
         child: Text("OUTLINED BUTTON"),
       ),
+
+      Padding(
+          padding: const EdgeInsets.fromLTRB(20, 0, 20, 10),
+          child:  Container(
+            decoration: BoxDecoration(
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.white,)
+
+              ],
+              borderRadius: new BorderRadius.circular(20.0),
+            ),
+            child:
+
+            new Column(
+              children: <Widget>[
+
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(16, 16, 16, 8),
+                  child:  Container(
+
+
+                    height: MediaQuery.of(context).size.height * 0.34,
+                    width: MediaQuery.of(context).size.width - 10.0,
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(10.0),
+                      child: Image(
+                          fit: BoxFit.cover, image:AssetImage("assets/images/vogue.jpg")),
+                    ),
+                  ),
+                ),
+
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(16, 8, 16, 16),
+
+                  child:  Container(
+
+                    height: MediaQuery.of(context).size.height * 0.34,
+                    width: MediaQuery.of(context).size.width - 10.0,
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(10.0),
+                      child: Image(
+                          fit: BoxFit.cover, image: AssetImage("assets/images/vogue.jpg")),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(20.0),),
+              ],
+            ),
+          ))]),
+
+
+
       bottomNavigationBar: Container(
         decoration: BoxDecoration(color: Colors.white, boxShadow: [
           BoxShadow(blurRadius: 20, color: Colors.black.withOpacity(.1))
@@ -134,10 +178,10 @@ class _HomePageState extends State<HomePage> {
                 }),
           ),
         ),
-      ),
+      ));
 
 
-    );
+
   }
 }
 

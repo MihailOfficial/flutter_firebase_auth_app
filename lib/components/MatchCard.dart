@@ -40,7 +40,7 @@ class _MatchCardState extends State<MatchCard> {
             child:  Container(
 
 
-              height: MediaQuery.of(context).size.height * 0.34,
+              height: MediaQuery.of(context).size.height * 0.30,
               width: MediaQuery.of(context).size.width - 10.0,
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(10.0),
@@ -55,7 +55,7 @@ class _MatchCardState extends State<MatchCard> {
 
             child:  Container(
 
-              height: MediaQuery.of(context).size.height * 0.34,
+              height: MediaQuery.of(context).size.height * 0.30,
               width: MediaQuery.of(context).size.width - 10.0,
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(10.0),

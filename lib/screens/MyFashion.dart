@@ -28,7 +28,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:image_cropper/image_cropper.dart';
 
 import 'Home.dart';
-import 'Settings.dart';
+import 'NewClothes.dart';
 //import 'package:tflite/tflite.dart';
 class AboutPage extends StatelessWidget {
   @override

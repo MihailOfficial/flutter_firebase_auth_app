@@ -49,21 +49,7 @@ class _HomePageState extends State<HomePage> {
   int _selectedIndex = 0;
   static const TextStyle optionStyle =
   TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
-  static const List<Widget> _widgetOptions = <Widget>[
-    Text(
-      'Index 1: Home',
-      style: optionStyle,
-    ),
-    Text(
-      'Index 2: Likes',
-      style: optionStyle,
-    ),
-    Text(
-      'Index 3: Search',
-      style: optionStyle,
-    ),
 
-  ];
   @override
   Widget build(BuildContext context) {
     print("drawing Home Page");

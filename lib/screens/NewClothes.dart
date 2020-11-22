@@ -199,10 +199,17 @@ class _ImageCaptureState extends State<ImageCapture> {
               ),
             )
           ]
-
-
-
-
+          else if (_imageFile == null) ...[
+            Container(
+              child: Container(
+                  padding: EdgeInsets.all(40),
+                  child: Center(
+                      child: Text(
+                          'As you purchase new clothes, we recommend placing the clothing article on your bed and taking a nice photo. Please note that this photo will be used on the community tab and as such, will be public.')
+                  )
+              )
+            )
+          ]
         ],
       ),
     );

@@ -284,8 +284,8 @@ class _UploaderState extends State<Uploader> {
           ToggleButtons(
                 children: <Widget>[
 
-              Text(' Shirt '),
-                  Text(' Pants '),
+              Text('   Shirt   '),
+                  Text('   Pant   '),
               ],
             onPressed: (int index) {
               setState(() {

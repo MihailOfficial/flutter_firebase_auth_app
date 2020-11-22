@@ -199,11 +199,10 @@ class _ImageCaptureState extends State<ImageCapture> {
               ),
             )
           ]
-          else if (_imageFile == null) ...[
-            Container(
-              child: Text('Insert Instructions here'),
-            )
-          ]
+
+
+
+
         ],
       ),
     );

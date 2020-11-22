@@ -1,4 +1,4 @@
-import 'package:firebase_auth_app/screens/MyFashion.dart';
+import 'package:firebase_auth_app/screens/Community.dart';
 import 'package:firebase_auth_app/screens/Home.dart';
 import 'package:firebase_auth_app/screens/NewClothes.dart';
 import 'package:flutter/material.dart';

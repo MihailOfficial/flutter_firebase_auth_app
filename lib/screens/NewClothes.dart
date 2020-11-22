@@ -27,7 +27,7 @@ import 'package:provider/provider.dart';
 import 'Home.dart';
 
 
-
+bool isShirt = true;
 
 class SettingsPage extends StatefulWidget {
   @override
@@ -222,10 +222,19 @@ class _UploaderState extends State<Uploader> {
   final FirebaseStorage _storage =
   FirebaseStorage(storageBucket: 'gs://vfhack-d6add.appspot.com');
 
+
+
   StorageUploadTask _uploadTask;
 
-  _startUpload() {
-    String filePath = 'images/${DateTime.now()}.png';
+  _startUpload() async {
+    String usrid = (await FirebaseAuth.instance.currentUser()).uid;
+    String filePath;
+    if(isShirt){
+      filePath = usrid + '/shirts/${DateTime.now()}.png';
+    } else {
+      filePath = usrid + '/pants/${DateTime.now()}.png';
+    }
+
 
     setState(() {
       _uploadTask = _storage.ref().child(filePath).putFile(widget.file);

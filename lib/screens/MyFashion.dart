@@ -59,11 +59,11 @@ class AboutPage extends StatelessWidget {
   }
 }
 String generateShirt() {
-  return "https://picsum.photos/200/300";
+  return "https://picsum.photos/200/300?random=" + Random(DateTime.now().millisecondsSinceEpoch).nextInt(1000000).toString();
 }
 
 String generatePant() {
-  return "https://picsum.photos/200/300";
+  return "https://picsum.photos/200/300?random=" + Random(DateTime.now().millisecondsSinceEpoch).nextInt(1000000).toString();
 }
 
 class TinderTab extends StatefulWidget {
@@ -93,6 +93,7 @@ class _TinderTabState extends State<TinderTab>
     result.add(new Image.network(rngPantUrl));
     print(result.length);
     results.add(result);
+    await Future.delayed(Duration(milliseconds: 100));
   }
 
   List results = [];

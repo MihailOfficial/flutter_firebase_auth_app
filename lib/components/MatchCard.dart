@@ -5,8 +5,8 @@ import 'dart:math' as math;
 
 class MatchCard extends StatefulWidget {
 
-  final String imageURLOne;
-  final String imageURLTwo;
+  final Image imageURLOne;
+  final Image imageURLTwo;
 
 
   MatchCard(@required this.imageURLOne, @required this.imageURLTwo,
@@ -45,7 +45,7 @@ class _MatchCardState extends State<MatchCard> {
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(10.0),
                 child: Image(
-                    fit: BoxFit.cover, image: AssetImage(widget.imageURLOne)),
+                    fit: BoxFit.cover, image: widget.imageURLOne.image),
               ),
             ),
           ),
@@ -60,7 +60,7 @@ class _MatchCardState extends State<MatchCard> {
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(10.0),
                 child: Image(
-                    fit: BoxFit.cover, image: AssetImage(widget.imageURLTwo)),
+                    fit: BoxFit.cover, image: widget.imageURLTwo.image),
               ),
             ),
           ),

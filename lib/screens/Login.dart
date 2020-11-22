@@ -254,7 +254,7 @@ class _LoginPageState extends State<LoginPage> {
           child: RaisedButton(
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
           key: new Key('goto-register'),
-          color: Color.fromRGBO(205, 205, 205, 1),
+          color: Color.fromRGBO(225, 225, 225, 1),
           child: Align(
               alignment: Alignment.center, child: Text('REGISTER')),
           onPressed: () {
@@ -299,7 +299,7 @@ class _LoginPageState extends State<LoginPage> {
 
                             child: RaisedButton(
                               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-                                color: Color.fromRGBO(205, 205, 205, 1),
+                                color: Color.fromRGBO(225, 225, 225, 1),
                             key: new Key('go-back'),
                             child: Align(alignment: Alignment.center, child: Text('Back')),
                             onPressed: () {

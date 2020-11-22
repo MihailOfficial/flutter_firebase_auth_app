@@ -110,7 +110,6 @@ class _TinderTabState extends State<TinderTab>
                 : Container(),
           ),
         ),
-
         new Align(
             alignment: Alignment.topCenter,
             child: new TinderSwapCard(

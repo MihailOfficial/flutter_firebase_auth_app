@@ -18,6 +18,7 @@ import 'dart:io';
 import 'dart:io' as io;
 import 'dart:math';
 import 'dart:ui' as ui;
+import 'package:firebase_auth_app/components/MatchCard.dart';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -28,6 +29,7 @@ import 'package:image_cropper/image_cropper.dart';
 
 import 'Home.dart';
 import 'Settings.dart';
+import 'package:tflite/tflite.dart';
 class AboutPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -55,9 +57,38 @@ class AboutPage extends StatelessWidget {
     );
   }
 }
+String generateShirt() {
+  return "https://picsum.photos/200/300";
+}
+
+String generatePant() {
+  return "https://picsum.photos/200/300";
+}
+
 class TinderTab extends StatefulWidget {
   @override
   _TinderTabState createState() => _TinderTabState();
+}
+
+Future<List<Image>> work() async {
+  double score = 0;
+  var rngShirtUrl;
+  var rngPantUrl;
+  while(score < 0.8){
+    rngPantUrl = generatePant();
+    rngShirtUrl = generateShirt();
+//    Tflite.runModelOnBinary(
+//        binary: await,
+//        numResults: 5)
+//        .then((value) {  if (value.isNotEmpty) {
+//    }});
+    var newScore = 1.0; //extract from value
+    score = newScore;
+  }
+  List<Image> result;
+  result.add(Image.network(rngShirtUrl));
+  result.add(Image.network(rngPantUrl));
+  return result;
 }
 
 class _TinderTabState extends State<TinderTab>
@@ -144,7 +175,9 @@ class _TinderTabState extends State<TinderTab>
               minWidth: MediaQuery.of(context).size.width - 50.0,
               minHeight: MediaQuery.of(context).size.height * 0.80,
               cardBuilder: (context, index) {
-                return peoples[index];
+                List<Image> result;
+                work().then((list) => {result = list});
+                return MatchCard(result[0],result[1]);
               },
               cardController: _cardController,
               swipeUpdateCallback:
